@@ -1,0 +1,26 @@
+During my years spent working in the wine industry, I discovered that many industry members had put together very impressive personal cellars but had a limited capactiy to broadcast and catalog their collections. 
+
+Bottle Shop is social platform meant to enable industry (and non-industry) collectors to show-off, discuss, and "swap" their collections with others who have a deep passion for this snobbiest of hobbies.
+
+P0:
+- Login and Registration
+- Validation for Existing and New Users
+- Database Design
+P1:
+- Image Upload
+- Likes, Comments, User Delete 
+- "Swap" Email functionality 
+    -- User to receive email when Swap is proposed
+- Inventory feature w/ subcategories 
+    - ex. white, red, sparkling all subcat's of Wine
+
+P2:
+- Friends/Followers/Connections
+- Ability to deny/accept requests, block users, unfriend
+- Ability to form groups of users for tastings/professional resources/etc
+
+P3:
+- ecommerce capabilities to enable sales between users
+- Social Media API
+
+Github repo: https://github.com/Dec2020PandA/josh_malvase_solo_project
