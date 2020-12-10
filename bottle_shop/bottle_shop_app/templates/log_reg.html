@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Login</title>
 </head>
 <body>
-    <h1>Placeholder</h1>
+    <div id="log_reg_wrap">
+        <div id="log_reg_top">
+            <h1>Welcome to Bottle Shop!</h1>
+            {% if messages %}
+            <ul>
+                {% for error in messages %}
+                <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        <div class="form-box">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                Email Address: <input type="email" name="email">
+                Password: <input type="password" name="password">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div class="form-box">
+            <h2>New to Bottle Shop?</h2>
+            <h2>Register Here!</h2>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                First Name <input type="text" name="first_name">
+                Last Name <input type="text" name="last_name">
+                Username <input type="text" name="username">
+                Email <input type="email" name="email">
+                D.O.B <input type="date" name="date_of_birth" placeholder="mm-dd-yyyy" value=""><br><br>
+                Password <input type="password" name="password">
+                Confirm Password <input type="password" name="confirm_pw">
+            <input type="submit" value="Register">
+            </form>
+        </div>
+        </div>
+    </div>
 </body>
 </html>

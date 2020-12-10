@@ -1,0 +1,28 @@
+* { 
+    font-family: 'Courier New', monospace;
+}
+#log_reg_wrap {
+    width: auto;
+    background-color: #85144b;
+    padding: 25px;
+    color: navy;
+}
+#log_reg_top > h1 {
+    text-align: center;
+    font-style: italic;
+}
+.form-box{
+    display: inline-block;
+    width: 400px;
+    vertical-align: top;
+    padding: 25px;
+    margin: 10px;
+}
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
