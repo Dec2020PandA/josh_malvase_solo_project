@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>My Bottle Shop</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="prof_header">
+            <h1>Hello {{user.first_name}} {{user.last_name}}! </h1>
+            <a href="/logout">Logout</a>
+        </div>
+        <div id="prof_content">
+            <div id="prof_side_bar">
+                <p><a href="/edit_profile/{{request.session.user_id}}">Edit Profile</a></p>
+                <p><a href="/bottle_shop_dash">MarketPlace</a></p>
+                <p>Location: {{user.location}}</p>
+                <p>About Me: {{user.about}}</p>
+            </div>
+            <div id="user_cellar">
+                <h2>My Cellar</h2>
+                <p><a href="/add_bottle">Add a Bottle</a></p>
+            </div>
+            <div id="user_messages">
+                <h2>My Messages</h2>
+                {% for message in user.messages.all %}
+                <div id="one_message">
+                    <p>Posted on {{ message.created_at }}: </p>
+                    <p>{{ message.content }}</p>
+                    <p>{{ message.user_likes.count }} people like this post </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>        
+</body>
+</html>

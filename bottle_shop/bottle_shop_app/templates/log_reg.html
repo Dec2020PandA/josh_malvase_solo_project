@@ -34,9 +34,10 @@
                 {% csrf_token %}
                 First Name <input type="text" name="first_name">
                 Last Name <input type="text" name="last_name">
-                Username <input type="text" name="username">
                 Email <input type="email" name="email">
                 D.O.B <input type="date" name="date_of_birth" placeholder="mm-dd-yyyy" value=""><br><br>
+                Location: <input type="text" name="location" placeholder="ex. San Jose, CA">
+                About Me: <textarea name="about" cols="30" rows="5" placeholder="ex. I am a 10 year industry veteran, an expert in California wines..."></textarea>
                 Password <input type="password" name="password">
                 Confirm Password <input type="password" name="confirm_pw">
             <input type="submit" value="Register">

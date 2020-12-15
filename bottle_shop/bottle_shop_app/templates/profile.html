@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bottle Shop</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>User Profile</title>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <a href="/logout">Logout</a>
+    <div id="wrapper">
+        <div id="prof-header">
+            <h1>{{user.first_name}} {{user.last_name}}'s BottleShop Profile</h1>
+            <a href="/logout">Logout</a> | <a href="/bottle_shop_dash">Back</a>
+        </div>
+        <div id="prof_content">
+            <div id="prof_side_bar">
+                <p>Location: {{user.location}}</p>
+                <p>About Me: {{user.about}}</p>
+            </div>
+            <div id="user_cellar">
+
+            </div>
+            <div id="user_messages">
+                {% for message in user.messages.all %}
+                <div id="prof_message">
+                    <h5>Posted {{message.created_at}}:</h5>
+                    <p>{{message.content}}</p>
+                    <p>{{ message.user_likes.count }} people like this quote </p>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
 </body>
 </html>

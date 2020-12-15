@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Bottle Shop Dashboard</title>
+</head>
+<body>
+    <div id="dash_wrapper">
+        <div id="dash_header">
+            <h1>{{request.session.full_name}}, welcome to the BottleShop Marketplace!</h1>
+            <p><a href="/my_profile/{{request.session.user_id}}">My Profile</a></p>
+        </div>
+        <div id="dash_content">
+            <div id="post_message">
+                <div class="form-box">
+                    <h3>Post a Message:</h3>
+                    {% if messages %}
+                    <ul>
+                        {% for error in messages %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="/post_message" method="POST">
+                        {% csrf_token %}
+                        <textarea name="content" placeholder="What are you tasting today?" cols="30" rows="10"></textarea>
+                        <input type="submit" value="Post!">
+                    </form>
+                </div>
+            </div>
+            <h3>BottleShop Messages:</h3>
+            {% for message in all_messages %}
+            <div id="one_message">
+                <h4>Posted By: <a href="/profile/{{message.poster.id}}">{{message.poster.first_name}} {{message.poster.last_name}}</a></h4>
+                <p>{{message.content}}</p>
+                <a href="/like/{{message.id}}">Like Post</a>
+                <p>{{ message.user_likes.count }} people like this post </p>
+                {% if message.poster.id == request.session.user_id %}
+                <a href="/mess_delete/{{message.id}}">Delete Message</a>
+                {% endif %}
+                <div id="comment">
+                    <p>Comments:</p>
+                        {% for comment in message.comments.all %}
+                            <h5>{{comment.poster.first_name}} {{comment.poster.last_name}} commented:</h5>
+                            <p>{{comment.content}} at {{comment.created_at}}</p>
+                            {% if comment.poster.id == request.session.user_id %}
+                                <a href="/comm_delete/{{comment.id}}">Delete Comment</a>
+                            {% endif %}
+                        {% endfor %}
+                        <form action="/create_comment" method="POST">
+                            {% csrf_token %}
+                            <textarea name="content" cols="50" rows="5"></textarea>
+                            <input type="hidden" name="message" value="{{message.id}}">
+                            <input type="submit" value="Post">
+                        </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
